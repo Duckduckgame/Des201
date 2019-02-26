@@ -1,0 +1,4 @@
+-maximum x is 20
+-maximum y is 3
+
+-for base game, platforms width at least 1.5
