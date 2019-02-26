@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class movingPlatform : MonoBehaviour
 {
 
     public float moveSpeed = 10;
-    Vector3 pos1;
-    Vector3 pos2;
+    public Vector3 pos1;
+    public Vector3 pos2;
 
     // Start is called before the first frame update
     void Start()
     {
-        Transform[] transforms = GetComponentsInChildren<Transform>();
 
-        pos1 = transforms[1].position;
-        pos2 = transforms[2].position;
 
         transform.position = pos1;
     }
@@ -24,5 +22,11 @@ public class movingPlatform : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.Lerp(pos1, pos2, Time.deltaTime * moveSpeed);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(pos1, 1f);
+        Gizmos.DrawSphere(pos2, 1f);
     }
 }
