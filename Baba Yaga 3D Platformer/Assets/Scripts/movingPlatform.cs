@@ -7,13 +7,17 @@ public class movingPlatform : MonoBehaviour
 {
 
     public float moveSpeed = 10;
-    public Vector3 pos1;
-    public Vector3 pos2;
+
+    public GameObject pos1GO;
+    public GameObject pos2GO;
+    Vector3 pos1;
+    Vector3 pos2;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        pos1 = pos1GO.transform.position;
+        pos2 = pos2GO.transform.position;
 
         transform.position = pos1;
     }
