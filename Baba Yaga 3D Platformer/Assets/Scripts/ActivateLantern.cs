@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActivateLantern : MonoBehaviour
 {
     Collider lanternCollider;
-    GameObject platform;
+    GameObject[] platforms;
     Renderer platformRenderer;
     Collider platformCollider;
 
@@ -13,11 +13,15 @@ public class ActivateLantern : MonoBehaviour
     void Start()
     {
         lanternCollider = GetComponent<BoxCollider>();
-        platform = GameObject.FindWithTag("Hidden Platform");
-        platformRenderer = platform.transform.GetChild(0).gameObject.GetComponent<Renderer>();
-        platformCollider = platform.transform.GetChild(0).gameObject.GetComponent<Collider>();
-        platformRenderer.enabled = false;
-        platformCollider.enabled = false;
+        platforms = GameObject.FindGameObjectsWithTag("Hidden Platform");
+        foreach(GameObject platform in platforms)
+        {
+            platformRenderer = platform.transform.gameObject.GetComponent<Renderer>();
+            platformCollider = platform.transform.gameObject.GetComponent<Collider>();
+            platformRenderer.enabled = false;
+            platformCollider.enabled = false;
+        }
+    
     }
 
     // Update is called once per frame
@@ -41,8 +45,13 @@ public class ActivateLantern : MonoBehaviour
         //If lantern is off, deactivate platform
         if (!transform.GetChild(0).gameObject.GetComponent<Light>().enabled)
         {
-            platformRenderer.enabled = false;
-            platformCollider.enabled = false;
+            foreach (GameObject platform in platforms)
+            {
+                platformRenderer = platform.transform.gameObject.GetComponent<Renderer>();
+                platformCollider = platform.transform.gameObject.GetComponent<Collider>();
+                platformRenderer.enabled = false;
+                platformCollider.enabled = false;
+            }       
         }
 
     }
@@ -50,10 +59,18 @@ public class ActivateLantern : MonoBehaviour
     //If lantern's collider collides with platform's collider, activate platform
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Hidden Platform")
-        {
-            platformRenderer.enabled = true;
-            platformCollider.enabled = true;
-        }
+
+       foreach (GameObject platform in platforms)
+       {
+             if (other.tag == "Hidden Platform")
+             {
+                 platformRenderer = platform.transform.gameObject.GetComponent<Renderer>();
+                 platformCollider = platform.transform.gameObject.GetComponent<Collider>();
+                 platformRenderer.enabled = true;
+                 platformCollider.enabled = true;
+             }
+                    
+       }
+        
     }
 }
