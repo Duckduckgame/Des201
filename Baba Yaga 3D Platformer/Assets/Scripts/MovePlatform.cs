@@ -17,6 +17,8 @@ public class MovePlatform : MonoBehaviour
 
     void Update()
     {
+        
+
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
         if (transform.position == targetPosition)
@@ -56,5 +58,6 @@ public class MovePlatform : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(localTargetPosition), Color.red);
         }
+        
     }
 }
