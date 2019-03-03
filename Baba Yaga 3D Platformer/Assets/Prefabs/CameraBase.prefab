@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965b2d381942f3645ac882b9363dcb51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1745228608122428, guid: 73291b58ee7c82f49b41d97bdc3d8490, type: 3}
   CameraFollowSpeed: 200
   clampAngle: 30
   inputSensitivity: 150
