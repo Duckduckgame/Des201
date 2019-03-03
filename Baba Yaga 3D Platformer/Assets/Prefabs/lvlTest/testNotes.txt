@@ -2,3 +2,22 @@
 -maximum y is 3
 
 -for base game, platforms width at least 1.5
+//
+Player Movement Constraints:
+Jump:
+Maximum Distance (x) covered by normal jump = 10 units 
+Maximum Height (y) covered by normal jump = 2 units
+
+Double Jump:
+Maximum Distance (x) covered by Double jump = 16 units 
+Maximum Height (y) covered by Double Jump = 3 units 
+
+Jump + Dash:
+Maximum Distance (x) covered by Jump + Dash = 14 units 
+Maximum Height (y) covered by Jump + Dash = 3 units
+
+Double Jump + Dash:
+Maximum Distance (x) covered by Double Jump + Dash: = 18 units 
+Maximum Height (y) covered by Double Jump + Dash: = 3 units
+
+Cancelling the dash allows the player to go 20 units in x.
