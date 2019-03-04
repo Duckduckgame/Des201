@@ -295,8 +295,8 @@ GameObject:
   - component: {fileID: 194707655}
   - component: {fileID: 194707654}
   - component: {fileID: 194707653}
-  - component: {fileID: 194707652}
   - component: {fileID: 194707656}
+  - component: {fileID: 194707652}
   m_Layer: 0
   m_Name: Hidden Platform
   m_TagString: Hidden Platform
@@ -965,8 +965,8 @@ GameObject:
   - component: {fileID: 804935817}
   - component: {fileID: 804935816}
   - component: {fileID: 804935815}
-  - component: {fileID: 804935814}
   - component: {fileID: 804935818}
+  - component: {fileID: 804935814}
   m_Layer: 0
   m_Name: Hidden Platform
   m_TagString: Hidden Platform
@@ -1403,8 +1403,8 @@ GameObject:
   - component: {fileID: 1046636190}
   - component: {fileID: 1046636189}
   - component: {fileID: 1046636188}
-  - component: {fileID: 1046636187}
   - component: {fileID: 1046636191}
+  - component: {fileID: 1046636187}
   m_Layer: 0
   m_Name: Hidden Platform
   m_TagString: Hidden Platform
