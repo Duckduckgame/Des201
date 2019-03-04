@@ -22,8 +22,6 @@ public class CameraController : MonoBehaviour {
     float rotationY = 0.0f;
     float rotationX = 0.0f;
 
-    
-
     // Use this for initialization
     void Start()
     {

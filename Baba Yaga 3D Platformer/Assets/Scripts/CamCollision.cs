@@ -25,14 +25,36 @@ public class CamCollision : MonoBehaviour
     void Update()
     {
         Vector3 desiredCamPosition = transform.parent.TransformPoint(dollyDir * maxDistance);
+
+        // Bit shift the index of the layer (8) to get a bit mask
+        int layerMask = 1 << 8;
+
+        // This would cast rays only against colliders in layer 8 (Hidden).
+        // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+        layerMask = ~layerMask;
+
         RaycastHit hit;
 
-        if (Physics.Linecast(transform.parent.position, desiredCamPosition, out hit))
+        // If platform is visible, make the camera collide with the platform
+        if(GameObject.Find("Lantern").GetComponent<ActivateLantern>().platformCollider.enabled)
         {
-            distance = Mathf.Clamp((hit.distance), minDistane, maxDistance);
+            if (Physics.Linecast(transform.parent.position, desiredCamPosition, out hit))
+            {
+                distance = Mathf.Clamp((hit.distance), minDistane, maxDistance);
+            }
+            else
+                distance = maxDistance;
         }
+        // Otherwise if platform is hidden, ignore camera collision with the platform
         else
-            distance = maxDistance;
+        {
+            if (Physics.Linecast(transform.parent.position, desiredCamPosition, out hit, layerMask))
+            {
+                distance = Mathf.Clamp((hit.distance), minDistane, maxDistance);
+            }
+            else
+                distance = maxDistance;
+        }
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, dollyDir * distance, Time.deltaTime * smooth);
     }
