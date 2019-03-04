@@ -7,7 +7,7 @@ public class ActivateLantern : MonoBehaviour
     Collider lanternCollider;
     GameObject[] platforms;
     Renderer platformRenderer;
-    Collider platformCollider;
+    public Collider platformCollider;
 
     // Start is called before the first frame update
     void Start()
