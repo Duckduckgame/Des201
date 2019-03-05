@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class characterController : MonoBehaviour
 {
-    bool onGround = false;
-    bool doubleJumpOK = false;
+    public bool onGround = false;
+    public bool doubleJumpOK = false;
     bool dashOK = true;
 
     public float jumpStrength;
@@ -76,7 +76,7 @@ public class characterController : MonoBehaviour
         #region Jumps
         if (Input.GetButtonDown("Jump")){
 
-
+            //double jump
             if (onGround == false && doubleJumpOK == true)
             {
                 Vector3 crntVelo = rb.velocity;
@@ -85,10 +85,12 @@ public class characterController : MonoBehaviour
                 rb.AddForce(Vector3.up * jumpStrength, ForceMode.VelocityChange);
                 doubleJumpOK = false;
             }
+            //jump
             if (onGround == true) {
                 rb.AddForce(Vector3.up * jumpStrength, ForceMode.VelocityChange);
                 doubleJumpOK = true;
                 onGround = false;
+                dashOK = true;
             }
             
         }
@@ -115,5 +117,20 @@ public class characterController : MonoBehaviour
             onGround = false;
             doubleJumpOK = true;
         }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        /* ContactPoint conP = collision.GetContact(0);
+         if (Vector3.Dot(conP.normal, Vector3.up) > 0.5f)
+         {
+             onGround = false;
+             doubleJumpOK = true;
+             dashOK = true;
+         }*/
+
+        onGround = false;
+        doubleJumpOK = true;
+        dashOK = true;
     }
 }
