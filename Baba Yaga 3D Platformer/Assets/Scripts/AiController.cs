@@ -23,7 +23,7 @@ public class AiController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ChasePlayer();
     }
 
     public void ChasePlayer()
