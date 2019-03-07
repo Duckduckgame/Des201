@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965b2d381942f3645ac882b9363dcb51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1745228608122428, guid: 73291b58ee7c82f49b41d97bdc3d8490, type: 3}
+  player: {fileID: 0}
   CameraFollowSpeed: 200
   clampAngle: 30
   inputSensitivity: 150
@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3912993938990545306}
   m_LocalRotation: {x: 0.1564345, y: 0, z: 0, w: 0.98768836}
-  m_LocalPosition: {x: 0, y: 3, z: -6}
+  m_LocalPosition: {x: 1.873758, y: 3.0668774, z: -4.8045077}
   m_LocalScale: {x: 15, y: 1, z: 1}
   m_Children:
   - {fileID: 3912993938605316288}

@@ -12,19 +12,17 @@ public class MovePlatform : MonoBehaviour
     void Start()
     {
         initialPosition = transform.position;
-        SetTargetPosition(targetPos.position);
+        targetPosition = targetPos.position;
+        targetPosDebug = targetPosition;
     }
 
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-        if (transform.position == targetPosition)
+        if (loop && transform.position == targetPosition)
         {
-            if (loop)
-            {
-                SwitchDirection();
-            }
+            SwitchDirection();
         }
     }
 
@@ -32,18 +30,12 @@ public class MovePlatform : MonoBehaviour
     {
         if (transform.position == initialPosition)
         {
-            SetTargetPosition(targetPos.position);
+            targetPosition = targetPos.position;
         }
         else
         {
             targetPosition = initialPosition;
         }
-    }
-
-    private void SetTargetPosition(Vector3 localPosition)
-    {
-        targetPosition = localPosition;
-        targetPosDebug = targetPosition;
     }
 
     void OnDrawGizmos()
