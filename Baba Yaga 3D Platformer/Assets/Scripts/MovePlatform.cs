@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovePlatform : MonoBehaviour
 {
-    public Vector3 localTargetPosition = new Vector3(0, 0, 5);
+    public Transform targetPos;
     private Vector3 initialPosition, targetPosition, targetPosDebug;
     public float speed = 3;
     public bool loop;
@@ -12,21 +12,17 @@ public class MovePlatform : MonoBehaviour
     void Start()
     {
         initialPosition = transform.position;
-        SetTargetPosition(localTargetPosition);
+        targetPosition = targetPos.position;
+        targetPosDebug = targetPosition;
     }
 
     void Update()
     {
-        
-
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-        if (transform.position == targetPosition)
+        if (loop && transform.position == targetPosition)
         {
-            if (loop)
-            {
-                SwitchDirection();
-            }
+            SwitchDirection();
         }
     }
 
@@ -34,18 +30,12 @@ public class MovePlatform : MonoBehaviour
     {
         if (transform.position == initialPosition)
         {
-            SetTargetPosition(localTargetPosition);
+            targetPosition = targetPos.position;
         }
         else
         {
             targetPosition = initialPosition;
         }
-    }
-
-    private void SetTargetPosition(Vector3 localPosition)
-    {
-        targetPosition = initialPosition + transform.TransformDirection(localPosition);
-        targetPosDebug = targetPosition;
     }
 
     void OnDrawGizmos()
@@ -56,8 +46,8 @@ public class MovePlatform : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(localTargetPosition), Color.red);
+            Debug.DrawLine(transform.position, targetPos.position, Color.red);
+            Gizmos.DrawSphere(targetPos.position, 1.0f);
         }
-        
     }
 }
