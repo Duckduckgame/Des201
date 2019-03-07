@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108716760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.57, y: 2.67, z: -0.54}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3519237628008521116}
@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6457283232969566992}
   - component: {fileID: 3519237628008520801}
   - component: {fileID: 3519237628008521117}
+  - component: {fileID: 4290207856888106801}
   - component: {fileID: 2145376514}
   m_Layer: 0
   m_Name: Moving Platform
@@ -150,6 +151,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23309ae436679b743a30a3d737beca1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localTargetPosition: {x: 0, y: 4, z: 5}
+  speed: 4
+  loop: 1
+--- !u!114 &4290207856888106801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3519237628008520800}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68787a35feeefae45a9bf95d5d7d3913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   targetPos: {fileID: 1108716761}
   speed: 4
   loop: 1
@@ -165,4 +181,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532630a9b44f93445be447871881a4c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1745228608122428, guid: 73291b58ee7c82f49b41d97bdc3d8490, type: 3}
+  player: {fileID: 0}
