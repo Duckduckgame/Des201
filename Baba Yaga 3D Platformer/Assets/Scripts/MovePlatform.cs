@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MovePlatform : MonoBehaviour
 {
-    public Vector3 localTargetPosition = new Vector3(5, 0, 0);
+    public Vector3 localTargetPosition;
+    public Vector3 m_initialPosition { get { return initialPosition; } set { initialPosition = value; } }
     private Vector3 initialPosition, targetPosition, targetPosDebug;
     public float speed = 3;
     public bool loop;
