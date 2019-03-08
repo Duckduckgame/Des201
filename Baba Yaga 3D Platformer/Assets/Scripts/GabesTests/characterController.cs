@@ -89,8 +89,6 @@ public class characterController : MonoBehaviour
             if (onGround == true) {
                 rb.AddForce(Vector3.up * jumpStrength, ForceMode.VelocityChange);
                 doubleJumpOK = true;
-                onGround = false;
-                dashOK = true;
             }
             
         }
@@ -104,33 +102,31 @@ public class characterController : MonoBehaviour
     }
     #endregion
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        ContactPoint conP = collision.GetContact(0);
-        if (Vector3.Dot(conP.normal, Vector3.up) > 0.5f)
+    public void ChildCollisionEnter(GameObject child) {
+        if (child.tag == "PlayerFloorCollision")
         {
             onGround = true;
             doubleJumpOK = false;
-            dashOK = true;
+            dashOK = false;
         }
-        else {
-            onGround = false;
-            doubleJumpOK = true;
+    }
+    public void ChildCollisionStay(GameObject child) {
+        if (child.tag == "PlayerFloorCollision")
+        {
+            onGround = true;
+            doubleJumpOK = false;
+            dashOK = false;
         }
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        /* ContactPoint conP = collision.GetContact(0);
-         if (Vector3.Dot(conP.normal, Vector3.up) > 0.5f)
-         {
-             onGround = false;
-             doubleJumpOK = true;
-             dashOK = true;
-         }*/
-
-        onGround = false;
-        doubleJumpOK = true;
-        dashOK = true;
+        public void ChildCollisionLeave(GameObject child) {
+            if (child.tag == "PlayerFloorCollision")
+            {
+                onGround = false;
+                doubleJumpOK = true;
+                dashOK = true;
+            }
+        }
     }
-}
+
+
