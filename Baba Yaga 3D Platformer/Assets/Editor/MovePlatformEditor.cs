@@ -22,11 +22,6 @@ public class MovePlatformEditor : Editor
            
             movePlatform.localTargetPosition = movePlatform.transform.InverseTransformPoint(targetPosition);
         }
-
-        Debug.Log(targetPosition);
-        
-        Handles.color = Color.yellow;
-        //Handles.DrawLine(initialPosition, targetPosition);
     }
 
 }
