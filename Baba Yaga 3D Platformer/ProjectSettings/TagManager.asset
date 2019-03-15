@@ -8,6 +8,7 @@ TagManager:
   - Lantern
   - Hidden Platform
   - PlayerFloorCollision
+  - RespawnTrigger
   layers:
   - Default
   - TransparentFX
