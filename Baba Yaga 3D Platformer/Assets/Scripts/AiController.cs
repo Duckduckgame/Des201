@@ -5,19 +5,21 @@ using UnityEngine.AI;
 
 public class AiController : MonoBehaviour
 {
-    private NavMeshAgent nav;
     private Transform player;
+    private PlayerPositon playerPositon;
     private GameObject lantern;
     private Transform enemyStartPos;
+    public float speed = 4;
 
     // Start is called before the first frame update
     void Start()
     {
-        nav = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerPositon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPositon>();
         lantern = player.GetChild(1).gameObject;
         enemyStartPos = gameObject.transform;
-        gameObject.SetActive(false);
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
     }
 
     // Update is called once per frame
@@ -29,12 +31,26 @@ public class AiController : MonoBehaviour
     public void ChasePlayer()
     {
         if (lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled)
-        {
-            gameObject.SetActive(true);
-            nav.SetDestination(player.position);
+         {
+            gameObject.GetComponent<MeshRenderer>().enabled = true;
+            gameObject.GetComponent<Collider>().enabled = true;
+            transform.LookAt(player.transform);
+            transform.position += transform.forward * speed * Time.deltaTime;
+
         }
         else
-            gameObject.SetActive(false);
+        {
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<Collider>().enabled = false;
+        }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            player.transform.position = new Vector3(playerPositon.m_reachedPosition.x, playerPositon.m_reachedPosition.y + 1,
+                playerPositon.m_reachedPosition.z);
+        }
+    }
 }
