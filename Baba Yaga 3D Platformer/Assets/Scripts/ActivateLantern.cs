@@ -7,7 +7,8 @@ public class ActivateLantern : MonoBehaviour
     Collider lanternCollider;
     GameObject[] platforms;
     Renderer platformRenderer;
-    public Collider platformCollider;
+    public Collider m_platformCollider { get { return platformCollider; } set { platformCollider = value; } }
+    private Collider platformCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +60,6 @@ public class ActivateLantern : MonoBehaviour
     //If lantern's collider collides with platform's collider, activate platform
     private void OnTriggerEnter(Collider other)
     {
-
        foreach (GameObject platform in platforms)
        {
              if (other.tag == "Hidden Platform")

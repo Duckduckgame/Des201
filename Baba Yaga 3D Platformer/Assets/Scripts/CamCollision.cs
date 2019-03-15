@@ -36,7 +36,7 @@ public class CamCollision : MonoBehaviour
         RaycastHit hit;
 
         // If platform is visible, make the camera collide with the platform
-        if(GameObject.Find("Lantern").GetComponent<ActivateLantern>().platformCollider.enabled)
+        if(GameObject.Find("Lantern").GetComponent<ActivateLantern>().m_platformCollider.enabled)
         {
             if (Physics.Linecast(transform.parent.position, desiredCamPosition, out hit))
             {
