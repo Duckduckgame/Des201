@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990ccbf958a3f1040b848c732863c6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 2
   distanceBetweenEnemies: 2
 --- !u!54 &1529041565
 Rigidbody:
