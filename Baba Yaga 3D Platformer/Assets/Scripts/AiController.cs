@@ -9,7 +9,9 @@ public class AiController : MonoBehaviour
     private PlayerPositon playerPositon;
     private GameObject lantern;
     private Transform enemyStartPos;
-    public float speed = 4;
+    public float speed = 4.0f;
+    private GameObject[] enemies;
+    public float distanceBetweenEnemies = 2.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,7 @@ public class AiController : MonoBehaviour
         enemyStartPos = gameObject.transform;
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
     // Update is called once per frame
@@ -30,8 +33,23 @@ public class AiController : MonoBehaviour
 
     public void ChasePlayer()
     {
+        foreach (GameObject enemy in enemies)
+        {
+            if (enemy != null)
+            {
+                float currentDistance = Vector3.Distance(transform.position, enemy.transform.position);
+
+                if (currentDistance < distanceBetweenEnemies)
+                {
+                    Vector3 dist = transform.position - enemy.transform.position;
+                    transform.position += dist * Time.deltaTime;
+                }
+            }
+        }
+
         if (lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled)
-         {
+        {
+
             gameObject.GetComponent<MeshRenderer>().enabled = true;
             gameObject.GetComponent<Collider>().enabled = true;
             transform.LookAt(player.transform);

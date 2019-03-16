@@ -9,6 +9,7 @@ TagManager:
   - Hidden Platform
   - PlayerFloorCollision
   - RespawnTrigger
+  - Enemy
   layers:
   - Default
   - TransparentFX
