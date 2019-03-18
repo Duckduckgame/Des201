@@ -20,8 +20,11 @@ public class PlayerController : MonoBehaviour {
     private Vector3 movement;
     private Vector3 dashDirection;
 
+    AudioSource dashSound;
+
     private bool doubleJump;
     bool dashing = false;
+
 
     /*public Transform pivot;
     public float rotateSpeed;*/
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        dashSound = GetComponent<AudioSource>();
         characterController = GetComponent<CharacterController>();
         normalSpeed = moveSpeed;
     }
@@ -72,17 +76,18 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (Input.GetButtonDown("Fire3") && dashing == false) //Left mouse button
-        {
+        {            
             currentDashTime = 0;
         }
         if (currentDashTime < maxDashTime)
-        {
+        {          
             dashDirection = transform.forward * dashDistance;
             currentDashTime += dashStoppingSpeed;
             dashing = true;
+            
         }
         else
-        {
+        {            
             dashDirection = Vector3.zero;
         }
 
@@ -94,9 +99,9 @@ public class PlayerController : MonoBehaviour {
 
         if (dashing == true)
         {
+            dashSound.Play();
             characterController.Move(dashDirection * Time.deltaTime * dashSpeed);
             dashing = false;
-
         }
 
        /* if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)

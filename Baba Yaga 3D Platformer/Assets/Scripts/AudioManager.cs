@@ -111,5 +111,4 @@ public class AudioManager : MonoBehaviour
         // no named sound
         Debug.LogWarning("Audio Manager: No Sound Found" + _name);
     }
-
 }

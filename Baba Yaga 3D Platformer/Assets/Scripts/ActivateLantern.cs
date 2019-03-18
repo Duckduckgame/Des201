@@ -8,10 +8,12 @@ public class ActivateLantern : MonoBehaviour
     GameObject[] platforms;
     Renderer platformRenderer;
     public Collider platformCollider;
+    AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioManager = AudioManager.instance;
         lanternCollider = GetComponent<BoxCollider>();
         platforms = GameObject.FindGameObjectsWithTag("Hidden Platform");
         foreach(GameObject platform in platforms)
@@ -29,11 +31,13 @@ public class ActivateLantern : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Fire3"))
         {
+            
             //Toggle the lantern on and off when pressing the L key
             lanternCollider.enabled = !lanternCollider.enabled;
 
             if (lanternCollider.enabled)
             {
+                audioManager.PlaySound("TorchSound");
                 transform.GetChild(0).gameObject.GetComponent<Light>().enabled = true;
             }
             else if (!lanternCollider.enabled)

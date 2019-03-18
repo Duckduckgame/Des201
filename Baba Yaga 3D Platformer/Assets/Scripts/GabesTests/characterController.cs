@@ -30,6 +30,11 @@ public class characterController : MonoBehaviour
 
     Vector3 crntDirection;
 
+    //Player sounds
+    AudioSource dashSound;
+    AudioSource JumpStart;
+    AudioSource JumpEnd;
+
 
 
     // Start is called before the first frame update
@@ -39,7 +44,10 @@ public class characterController : MonoBehaviour
         camTransform = Camera.main.transform;
         coll = GetComponent<CapsuleCollider>();
         rb = GetComponent<Rigidbody>();
-       
+        AudioSource[] audios = GetComponents<AudioSource>();
+        dashSound = audios[0];
+        JumpEnd = audios[1];
+        JumpStart = audios[2];
     }
 
     // Update is called once per frame
@@ -76,9 +84,11 @@ public class characterController : MonoBehaviour
         #region Jumps
         if (Input.GetButtonDown("Jump")){
 
+            
 
             if (onGround == false && doubleJumpOK == true)
             {
+                dashSound.Play();
                 Vector3 crntVelo = rb.velocity;
                 crntVelo.y = 0;
                 rb.velocity = Vector3.zero; //Important to zero out the velocity first. Addforce will otherwise be deducted from the downwards velocity
@@ -86,6 +96,7 @@ public class characterController : MonoBehaviour
                 doubleJumpOK = false;
             }
             if (onGround == true) {
+                JumpStart.Play();              
                 rb.AddForce(Vector3.up * jumpStrength, ForceMode.VelocityChange);
                 doubleJumpOK = true;
                 onGround = false;
@@ -95,6 +106,7 @@ public class characterController : MonoBehaviour
         if (Input.GetButtonDown("Fire1")) {
             if (onGround == false && dashOK == true)
             {
+                dashSound.Play();
                 rb.AddRelativeForce(new Vector3(0, 0.25f, 1) * dashStrength, ForceMode.VelocityChange);
                 dashOK = false;
             }
