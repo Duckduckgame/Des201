@@ -10,6 +10,7 @@ TagManager:
   - PlayerFloorCollision
   - RespawnTrigger
   - Enemy
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

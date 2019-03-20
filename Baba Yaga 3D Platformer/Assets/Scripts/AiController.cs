@@ -12,6 +12,7 @@ public class AiController : MonoBehaviour
     public float speed = 4.0f;
     private GameObject[] enemies;
     public float distanceBetweenEnemies = 2.0f;
+    private Checkpoint checkpoint;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class AiController : MonoBehaviour
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        checkpoint = GameObject.FindGameObjectWithTag("Checkpoint").GetComponent<Checkpoint>();
     }
 
     // Update is called once per frame
@@ -47,19 +49,32 @@ public class AiController : MonoBehaviour
             }
         }
 
-        if (lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled)
-        {
+        RaycastHit hit;
+        int layerMask = 1 << 8;
+        layerMask = ~layerMask;
 
-            gameObject.GetComponent<MeshRenderer>().enabled = true;
-            gameObject.GetComponent<Collider>().enabled = true;
-            transform.LookAt(player.transform);
-            transform.position += transform.forward * speed * Time.deltaTime;
-
-        }
-        else
+        Vector3 start = player.transform.position + (Vector3.down);
+        if (Physics.Raycast(start, Vector3.down, out hit, 100, layerMask))
         {
-            gameObject.GetComponent<MeshRenderer>().enabled = false;
-            gameObject.GetComponent<Collider>().enabled = false;
+            if(lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && checkpoint.m_OnCheckpoint == false &&
+                lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && hit.transform.gameObject.tag != "Checkpoint")
+            {
+                gameObject.GetComponent<MeshRenderer>().enabled = true;
+                gameObject.GetComponent<Collider>().enabled = true;
+                transform.LookAt(player.transform);
+                transform.position += transform.forward * speed * Time.deltaTime;
+            }
+            else if(!lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled)
+            {
+                gameObject.GetComponent<MeshRenderer>().enabled = false;
+                gameObject.GetComponent<Collider>().enabled = false;
+            }
+            else if (lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && checkpoint.m_OnCheckpoint == true &&
+                lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled || hit.transform.gameObject.tag == "Checkpoint")
+            {
+                gameObject.GetComponent<MeshRenderer>().enabled = true;
+                gameObject.GetComponent<Collider>().enabled = true;
+            }
         }
     }
 
