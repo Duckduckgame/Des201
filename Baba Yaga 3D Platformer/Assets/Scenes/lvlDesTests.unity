@@ -5053,7 +5053,7 @@ GameObject:
   - component: {fileID: 620248962}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5936,7 +5936,7 @@ GameObject:
   - component: {fileID: 758391572}
   m_Layer: 0
   m_Name: Platform (66)
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9391,7 +9391,7 @@ GameObject:
   - component: {fileID: 1100453402}
   m_Layer: 0
   m_Name: Platform (77)
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12931,7 +12931,7 @@ GameObject:
   - component: {fileID: 1469838807}
   m_Layer: 0
   m_Name: Platform (9)
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14628,7 +14628,7 @@ GameObject:
   - component: {fileID: 1658491444}
   m_Layer: 0
   m_Name: Platform (44)
-  m_TagString: Untagged
+  m_TagString: Checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
