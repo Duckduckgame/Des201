@@ -9,6 +9,7 @@ public class AiController : MonoBehaviour
     private Transform player;
     private GameObject lantern;
     private Transform enemyStartPos;
+    AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class AiController : MonoBehaviour
         lantern = player.GetChild(1).gameObject;
         enemyStartPos = gameObject.transform;
         gameObject.SetActive(false);
+        audioManager = AudioManager.instance;
     }
 
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class AiController : MonoBehaviour
     {
         if (lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled)
         {
+            audioManager.PlaySound("EnemySound");
             gameObject.SetActive(true);
             nav.SetDestination(player.position);
         }

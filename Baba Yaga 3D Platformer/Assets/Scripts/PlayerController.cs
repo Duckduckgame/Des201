@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour {
     private Vector3 movement;
     private Vector3 dashDirection;
 
-    AudioSource dashSound;
 
     private bool doubleJump;
     bool dashing = false;
@@ -34,7 +33,6 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        dashSound = GetComponent<AudioSource>();
         characterController = GetComponent<CharacterController>();
         normalSpeed = moveSpeed;
     }
@@ -99,7 +97,6 @@ public class PlayerController : MonoBehaviour {
 
         if (dashing == true)
         {
-            dashSound.Play();
             characterController.Move(dashDirection * Time.deltaTime * dashSpeed);
             dashing = false;
         }
