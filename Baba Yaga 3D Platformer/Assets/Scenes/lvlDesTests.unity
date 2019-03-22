@@ -2649,7 +2649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 300610344}
   - component: {fileID: 300610345}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11163,6 +11163,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 67146217384781842, guid: bf568d5e11e44784e96157ec9cfce1e6,
+        type: 3}
+      propertyPath: distanceBetweenEnemies
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 67146217384781842, guid: bf568d5e11e44784e96157ec9cfce1e6,
+        type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 463969087278785467, guid: bf568d5e11e44784e96157ec9cfce1e6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11217,16 +11227,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 67146217384781842, guid: bf568d5e11e44784e96157ec9cfce1e6,
-        type: 3}
-      propertyPath: distanceBetweenEnemies
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 67146217384781842, guid: bf568d5e11e44784e96157ec9cfce1e6,
-        type: 3}
-      propertyPath: speed
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf568d5e11e44784e96157ec9cfce1e6, type: 3}
@@ -11390,6 +11390,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 67146217384781842, guid: bf568d5e11e44784e96157ec9cfce1e6,
+        type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 463969087278785467, guid: bf568d5e11e44784e96157ec9cfce1e6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11444,11 +11449,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 67146217384781842, guid: bf568d5e11e44784e96157ec9cfce1e6,
-        type: 3}
-      propertyPath: speed
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf568d5e11e44784e96157ec9cfce1e6, type: 3}
@@ -14019,6 +14019,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 67146217384781842, guid: bf568d5e11e44784e96157ec9cfce1e6,
+        type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 463969087278785467, guid: bf568d5e11e44784e96157ec9cfce1e6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14073,11 +14078,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 67146217384781842, guid: bf568d5e11e44784e96157ec9cfce1e6,
-        type: 3}
-      propertyPath: speed
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf568d5e11e44784e96157ec9cfce1e6, type: 3}
@@ -15850,6 +15850,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 562763027, guid: 12b30d361ea01da4cb52edc40a83ab49, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 562763029, guid: 12b30d361ea01da4cb52edc40a83ab49, type: 3}
       propertyPath: m_LocalPosition.x
       value: -98.50456
@@ -15893,6 +15897,18 @@ PrefabInstance:
     - target: {fileID: 562763029, guid: 12b30d361ea01da4cb52edc40a83ab49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 209660153, guid: 12b30d361ea01da4cb52edc40a83ab49, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1204965836, guid: 12b30d361ea01da4cb52edc40a83ab49, type: 3}
+      propertyPath: m_TagString
+      value: Lantern
+      objectReference: {fileID: 0}
+    - target: {fileID: 1204965836, guid: 12b30d361ea01da4cb52edc40a83ab49, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12b30d361ea01da4cb52edc40a83ab49, type: 3}

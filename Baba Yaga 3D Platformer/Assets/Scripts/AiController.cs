@@ -19,7 +19,7 @@ public class AiController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerPositon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPositon>();
-        lantern = player.GetChild(1).gameObject;
+        lantern = GameObject.FindGameObjectWithTag("Lantern");
         enemyStartPos = gameObject.transform;
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
