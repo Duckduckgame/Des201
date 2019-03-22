@@ -56,8 +56,6 @@ public class AiController : MonoBehaviour
         Vector3 start = player.transform.position;
         if (Physics.Raycast(start, Vector3.down, out hit, 100, layerMask))
         {
-            Debug.DrawRay(start, Vector3.down * hit.distance, Color.yellow);
-
             if (lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && checkpoint.m_OnCheckpoint == false &&
                 lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && hit.transform.gameObject.tag != "Checkpoint")
             {

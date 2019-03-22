@@ -7,7 +7,7 @@ public class CamCollision : MonoBehaviour
     [Tooltip("Sets the minimum camera distance when there is an object between player and camera")]
     public float minDistane = 1.0f;
     [Tooltip("Sets the default/maximum camera distance from the player")]
-    public float maxDistance = 4.0f;
+    public float maxDistance = 5.0f;
     [Tooltip("Sets how smoothly the camera transitions between maximum distance and minimum distance")]
     public float smooth = 10.0f;
 
