@@ -53,10 +53,12 @@ public class AiController : MonoBehaviour
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
 
-        Vector3 start = player.transform.position + (Vector3.down);
+        Vector3 start = player.transform.position;
         if (Physics.Raycast(start, Vector3.down, out hit, 100, layerMask))
         {
-            if(lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && checkpoint.m_OnCheckpoint == false &&
+            Debug.DrawRay(start, Vector3.down * hit.distance, Color.yellow);
+
+            if (lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && checkpoint.m_OnCheckpoint == false &&
                 lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && hit.transform.gameObject.tag != "Checkpoint")
             {
                 gameObject.GetComponent<MeshRenderer>().enabled = true;
@@ -69,8 +71,8 @@ public class AiController : MonoBehaviour
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
                 gameObject.GetComponent<Collider>().enabled = false;
             }
-            else if (lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && checkpoint.m_OnCheckpoint == true &&
-                lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled || hit.transform.gameObject.tag == "Checkpoint")
+            else if (lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && checkpoint.m_OnCheckpoint == true
+                || hit.transform.gameObject.tag == "Checkpoint")
             {
                 gameObject.GetComponent<MeshRenderer>().enabled = true;
                 gameObject.GetComponent<Collider>().enabled = true;
