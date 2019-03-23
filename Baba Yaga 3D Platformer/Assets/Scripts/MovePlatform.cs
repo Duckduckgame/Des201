@@ -9,6 +9,8 @@ public class MovePlatform : MonoBehaviour
     private Vector3 initialPosition, targetPosition, targetPosDebug;
     public float speed = 3;
     public bool loop;
+     public float smoothTime = 0.3F;
+    private Vector3 velocity = Vector3.zero;
 
     void Start()
     {
@@ -18,9 +20,9 @@ public class MovePlatform : MonoBehaviour
 
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime, speed);
 
-        if (transform.position == targetPosition)
+        if (Vector3.Distance(transform.position, targetPosition) < 0.001f)
         {
             if (loop)
             {
@@ -31,7 +33,7 @@ public class MovePlatform : MonoBehaviour
 
     public void SwitchDirection()
     {
-        if (transform.position == initialPosition)
+        if (Vector3.Distance(transform.position, initialPosition) < 0.001f)
         {
             SetTargetPosition(localTargetPosition);
         }
