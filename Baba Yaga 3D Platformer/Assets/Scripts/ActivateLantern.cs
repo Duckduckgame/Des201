@@ -52,6 +52,8 @@ public class ActivateLantern : MonoBehaviour
         {
             foreach (GameObject platform in platforms)
             {
+                platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
+                platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
                 platformRenderer.enabled = false;
                 platformCollider.enabled = false;
             }       
@@ -65,6 +67,8 @@ public class ActivateLantern : MonoBehaviour
        {
             if (other.tag == "Hidden Platform")
             {
+                platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
+                platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
                 platformRenderer.enabled = true;
                 platformCollider.enabled = true;
             }  
