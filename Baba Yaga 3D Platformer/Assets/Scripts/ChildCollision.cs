@@ -15,14 +15,17 @@ public class ChildCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        CC.ChildCollisionEnter(gameObject);
+        if (other.gameObject.layer != 8)
+            CC.ChildCollisionEnter(gameObject);
     }
     private void OnTriggerStay(Collider other)
     {
-        CC.ChildCollisionStay(gameObject);
+        if (other.gameObject.layer != 8)
+            CC.ChildCollisionStay(gameObject);
     }
     private void OnTriggerExit(Collider other)
     {
-        CC.ChildCollisionLeave(gameObject);
+        if (other.gameObject.layer != 8)
+            CC.ChildCollisionLeave(gameObject);
     }
 }

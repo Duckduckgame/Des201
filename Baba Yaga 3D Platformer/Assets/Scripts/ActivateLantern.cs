@@ -21,8 +21,8 @@ public class ActivateLantern : MonoBehaviour
 
         foreach (GameObject platform in platforms)
         {
-            platformRenderer = platform.transform.gameObject.GetComponent<Renderer>();
-            platformCollider = platform.transform.gameObject.GetComponent<Collider>();
+            platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
+            platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
             platformRenderer.enabled = false;
             platformCollider.enabled = false;
         }
@@ -52,8 +52,6 @@ public class ActivateLantern : MonoBehaviour
         {
             foreach (GameObject platform in platforms)
             {
-                platformRenderer = platform.transform.gameObject.GetComponent<Renderer>();
-                platformCollider = platform.transform.gameObject.GetComponent<Collider>();
                 platformRenderer.enabled = false;
                 platformCollider.enabled = false;
             }       
@@ -65,13 +63,11 @@ public class ActivateLantern : MonoBehaviour
     {
        foreach (GameObject platform in platforms)
        {
-             if (other.tag == "Hidden Platform")
-             {
-                 platformRenderer = platform.transform.gameObject.GetComponent<Renderer>();
-                 platformCollider = platform.transform.gameObject.GetComponent<Collider>();
-                 platformRenderer.enabled = true;
-                 platformCollider.enabled = true;
-             }  
+            if (other.tag == "Hidden Platform")
+            {
+                platformRenderer.enabled = true;
+                platformCollider.enabled = true;
+            }  
        }
     }
 }
