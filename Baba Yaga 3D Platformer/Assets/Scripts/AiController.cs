@@ -13,6 +13,9 @@ public class AiController : MonoBehaviour
     private GameObject[] enemies;
     public float distanceBetweenEnemies = 2.0f;
     private Checkpoint checkpoint;
+    public float chaseDistance = 50.0f;
+    public Vector3 m_originalPos { get { return originalPos; } set { originalPos = value; } }
+    private Vector3 originalPos;
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +28,24 @@ public class AiController : MonoBehaviour
         gameObject.GetComponent<Collider>().enabled = false;
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         checkpoint = GameObject.FindGameObjectWithTag("Checkpoint").GetComponent<Checkpoint>();
+        originalPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         ChasePlayer();
+
+        if(playerPositon.m_playerDead == true)
+        {
+            transform.position = originalPos;
+
+            if (lantern.GetComponent<ActivateLantern>().m_lanternCollider.enabled)
+            {
+                lantern.GetComponent<ActivateLantern>().m_lanternCollider.enabled = false;
+                lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled = false;
+            }
+        }
     }
 
     public void ChasePlayer()
@@ -56,24 +71,35 @@ public class AiController : MonoBehaviour
         Vector3 start = player.transform.position;
         if (Physics.Raycast(start, Vector3.down, out hit, 100, layerMask))
         {
-            if (lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && checkpoint.m_OnCheckpoint == false &&
-                lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && hit.transform.gameObject.tag != "Checkpoint")
+            if (lantern.GetComponent<ActivateLantern>().m_lanternCollider.enabled && checkpoint.m_OnCheckpoint == false &&
+                lantern.GetComponent<ActivateLantern>().m_lanternCollider.enabled && hit.transform.gameObject.tag != "Checkpoint")
             {
-                gameObject.GetComponent<MeshRenderer>().enabled = true;
-                gameObject.GetComponent<Collider>().enabled = true;
-                transform.LookAt(player.transform);
-                transform.position += transform.forward * speed * Time.deltaTime;
+                if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
+                {
+                    gameObject.GetComponent<MeshRenderer>().enabled = true;
+                    gameObject.GetComponent<Collider>().enabled = true;
+                    transform.LookAt(player);
+                    transform.position += transform.forward * speed * Time.deltaTime;
+                }
+                else
+                {
+                    gameObject.GetComponent<MeshRenderer>().enabled = false;
+                    gameObject.GetComponent<Collider>().enabled = false;
+                }
             }
-            else if(!lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled)
+            else if(!lantern.GetComponent<ActivateLantern>().m_lanternCollider.enabled)
             {
                 gameObject.GetComponent<MeshRenderer>().enabled = false;
                 gameObject.GetComponent<Collider>().enabled = false;
             }
-            else if (lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled && checkpoint.m_OnCheckpoint == true
-                || hit.transform.gameObject.tag == "Checkpoint")
+            else if (lantern.GetComponent<ActivateLantern>().m_lanternCollider.enabled && checkpoint.m_OnCheckpoint == true ||
+                    hit.transform.gameObject.tag == "Checkpoint")
             {
-                gameObject.GetComponent<MeshRenderer>().enabled = true;
-                gameObject.GetComponent<Collider>().enabled = true;
+                if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
+                {
+                    gameObject.GetComponent<MeshRenderer>().enabled = true;
+                    gameObject.GetComponent<Collider>().enabled = true;
+                }   
             }
         }
     }
@@ -82,8 +108,12 @@ public class AiController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            playerPositon.m_playerDead = true;
+
             player.transform.position = new Vector3(playerPositon.m_reachedPosition.x, playerPositon.m_reachedPosition.y + 1,
                 playerPositon.m_reachedPosition.z);
+
+            transform.position = originalPos;
         }
     }
 }
