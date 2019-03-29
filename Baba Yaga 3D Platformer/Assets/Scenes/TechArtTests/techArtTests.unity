@@ -281,11 +281,6 @@ PrefabInstance:
       propertyPath: clampAngleMax
       value: 40
       objectReference: {fileID: 0}
-    - target: {fileID: 3912993938990545297, guid: d657386f097dd3f46b9e6152c079eefb,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3912993938990545311, guid: d657386f097dd3f46b9e6152c079eefb,
         type: 3}
       propertyPath: m_ForceIntoRT
@@ -327,6 +322,11 @@ PrefabInstance:
       value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 3912993938990545308, guid: d657386f097dd3f46b9e6152c079eefb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912993938990545297, guid: d657386f097dd3f46b9e6152c079eefb,
         type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1143,7 +1143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!102 &202928180
 TextMesh:
   serializedVersion: 3
@@ -3387,7 +3387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &871028151
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6579,5 +6579,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 2c96051b5a2202b4b8283b7cf611ad74,
         type: 2}
+    - target: {fileID: 2577961905893011734, guid: 4ab753b6ebd985e4bb10b1a200b8d0da,
+        type: 3}
+      propertyPath: isGlobal
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ab753b6ebd985e4bb10b1a200b8d0da, type: 3}
