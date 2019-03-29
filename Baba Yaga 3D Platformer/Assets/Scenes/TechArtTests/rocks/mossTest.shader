@@ -10,17 +10,24 @@ Properties {
 	  _Direction ("Direction", Vector) = (0, 1, 0)
       _Amount ("Amount", Range(0, 1)) = 1
 	  _MossDepth("Moss Depth", Range(0,0.3)) = 0.1
+	  _RoughnessMap ("Roughness Map", 2D) = "white" {}
+	  _Roughness ("Roughness", Range(0.01, 1)) = 0.01 
+
     }
     SubShader {
       Tags { "RenderType" = "Opaque" }
       
 	  CGPROGRAM
 	  #pragma surface surf Lambert vertex:vert
+	  #pragma target 3.0
+	  #pragma glsl
 
 	  sampler2D _MainTex;
 	  sampler2D _MossTex;
 	  sampler2D _BumpMap;
 	  sampler2D _MossBump;
+	  sampler2D _RoughnessMap;
+	  float _Roughness;
 	  float3 _Direction;
       fixed _Amount;
 	  float _MossDepth;
@@ -30,8 +37,10 @@ Properties {
 		float2 uv_MossTex;
         float2 uv_BumpMap;
 		float2 uv_MossBump;
+		float2 uv_Roughness;
 		
 		float3 worldNormal;
+		float3 worldRefl;
 		INTERNAL_DATA
       };
 
@@ -46,6 +55,7 @@ Properties {
 	  }
 
       void surf (Input IN, inout SurfaceOutput o) {
+		float roughness = _Roughness * tex2D(_RoughnessMap, IN.uv_Roughness).r;
         half4 c = tex2D (_MainTex, IN.uv_MainTex);
 		half4 cM = tex2D (_MossTex, IN.uv_MossTex);
 		half3 n = tex2D (_BumpMap, IN.uv_BumpMap);
@@ -53,13 +63,15 @@ Properties {
 
 		if(dot(WorldNormalVector(IN, o.Normal), _Direction.xyz)>=lerp(1,-1,_Amount)){
 			o.Albedo = cM.rgb;
-			o.Normal = nm.rbg;
+			o.Normal = nm.rgb;
+			
 		}
 		else{
 			o.Albedo = c.rgb;
-			o.Normal = n.rbg;
+			o.Normal = n.rgb;
 		}
 		o.Alpha = 1;
+		o.Gloss = roughness;
       }
 	  
       ENDCG

@@ -321,9 +321,54 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 3912993938990545311, guid: d657386f097dd3f46b9e6152c079eefb,
+        type: 3}
+      propertyPath: m_AllowMSAA
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912993938990545311, guid: d657386f097dd3f46b9e6152c079eefb,
+        type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3912993938990545311, guid: d657386f097dd3f46b9e6152c079eefb,
+        type: 3}
+      propertyPath: m_HDR
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3912993938990545308, guid: d657386f097dd3f46b9e6152c079eefb,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683618742277805102, guid: d657386f097dd3f46b9e6152c079eefb,
+        type: 3}
+      propertyPath: fog.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683618742277805102, guid: d657386f097dd3f46b9e6152c079eefb,
+        type: 3}
+      propertyPath: antialiasingMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683618742277805102, guid: d657386f097dd3f46b9e6152c079eefb,
+        type: 3}
+      propertyPath: fastApproximateAntialiasing.keepAlpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683618742277805102, guid: d657386f097dd3f46b9e6152c079eefb,
+        type: 3}
+      propertyPath: fastApproximateAntialiasing.fastMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683618742277805102, guid: d657386f097dd3f46b9e6152c079eefb,
+        type: 3}
+      propertyPath: subpixelMorphologicalAntialiasing.quality
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8683618742277805102, guid: d657386f097dd3f46b9e6152c079eefb,
+        type: 3}
+      propertyPath: stopNaNPropagation
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3912993938990545297, guid: d657386f097dd3f46b9e6152c079eefb,
