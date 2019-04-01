@@ -19,7 +19,7 @@
 
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard fullforwardshadows alpha
+        #pragma surface surf Standard fullforwardshadows alpha:blend
 
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
@@ -58,7 +58,7 @@
             o.Albedo = c2.rgb;
             // Metallic and smoothness come from slider variables
 
-            o.Alpha = c.a - 0.5;
+            o.Alpha = c.a - 0.2;
 			clip(c.a - 0.6);
 			o.Emission = c.rbga - 0.5;
 			
