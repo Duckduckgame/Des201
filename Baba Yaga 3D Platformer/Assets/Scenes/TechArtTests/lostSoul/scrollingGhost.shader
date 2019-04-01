@@ -3,16 +3,18 @@
     Properties
     {
         _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+        _MainTex ("Alpha (A)", 2D) = "white" {}
+		_ColTex ("Color (RBG)", 2D) = "White" {}
 		_ScrollXSpeed ("X Scroll Speed", Range(0,10)) = 2
 		_ScrollYSpeed ("Y Scroll Speed", Range(0,10)) = 2
 
     }
     SubShader
     {
-        Tags { "Queue" = "Transparent" "RenderType"="Transparent" }
+        Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType"="Transparent" }
         LOD 200
 		ZWrite Off
+
 		Cull Off
 
         CGPROGRAM
@@ -25,6 +27,7 @@
 		fixed _ScrollXSpeed;
 		fixed _ScrollYSpeed;
         sampler2D _MainTex;
+		sampler2D _ColTex;
 
         struct Input
         {
@@ -51,11 +54,13 @@
 		scrolledUV += fixed2(xScrollValue, yScrollValue);
             // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, scrolledUV) * _Color;
-            o.Albedo = c.rgb;
+			fixed4 c2 = tex2D(_ColTex, scrolledUV * _Color);
+            o.Albedo = c2.rgb;
             // Metallic and smoothness come from slider variables
 
-            o.Alpha = c.a;
-			clip(c.a - 0.5);
+            o.Alpha = c.a - 0.5;
+			clip(c.a - 0.6);
+			o.Emission = c.rbga - 0.5;
 			
         }
         ENDCG
