@@ -7,7 +7,7 @@ public class CamCollision : MonoBehaviour
     [Tooltip("Sets the minimum camera distance when there is an object between player and camera")]
     public float minDistane = 1.0f;
     [Tooltip("Sets the default/maximum camera distance from the player")]
-    public float maxDistance = 4.0f;
+    public float maxDistance = 5.0f;
     [Tooltip("Sets how smoothly the camera transitions between maximum distance and minimum distance")]
     public float smooth = 10.0f;
 
@@ -36,7 +36,7 @@ public class CamCollision : MonoBehaviour
         RaycastHit hit;
 
         // If platform is visible, make the camera collide with the platform
-        if(GameObject.Find("Lantern").GetComponent<ActivateLantern>().platformCollider.enabled)
+        if(GameObject.Find("Lantern").GetComponent<ActivateLantern>().m_platformCollider.enabled)
         {
             if (Physics.Linecast(transform.parent.position, desiredCamPosition, out hit))
             {

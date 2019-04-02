@@ -7,6 +7,10 @@ TagManager:
   - Floor
   - Lantern
   - Hidden Platform
+  - PlayerFloorCollision
+  - RespawnTrigger
+  - Enemy
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - 
   - 
   - Hidden
-  - 
+  - PostProcessing
   - 
   - 
   - 

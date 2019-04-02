@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class MovePlatform : MonoBehaviour
 {
-    public Vector3 localTargetPosition = new Vector3(0, 0, 5);
+    public Vector3 localTargetPosition;
+    public Vector3 m_initialPosition { get { return initialPosition; } set { initialPosition = value; } }
     private Vector3 initialPosition, targetPosition, targetPosDebug;
     public float speed = 3;
     public bool loop;
+     public float smoothTime = 0.3F;
+    private Vector3 velocity = Vector3.zero;
 
     void Start()
     {
@@ -17,11 +20,9 @@ public class MovePlatform : MonoBehaviour
 
     void Update()
     {
-        
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime, speed);
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-
-        if (transform.position == targetPosition)
+        if (Vector3.Distance(transform.position, targetPosition) < 0.001f)
         {
             if (loop)
             {
@@ -32,7 +33,7 @@ public class MovePlatform : MonoBehaviour
 
     public void SwitchDirection()
     {
-        if (transform.position == initialPosition)
+        if (Vector3.Distance(transform.position, initialPosition) < 0.001f)
         {
             SetTargetPosition(localTargetPosition);
         }
@@ -58,6 +59,5 @@ public class MovePlatform : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(localTargetPosition), Color.red);
         }
-        
     }
 }

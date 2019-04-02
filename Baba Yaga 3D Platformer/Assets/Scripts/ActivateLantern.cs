@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class ActivateLantern : MonoBehaviour
 {
+    public Collider m_lanternCollider { get { return lanternCollider; } set { lanternCollider = value; } }
     Collider lanternCollider;
     GameObject[] platforms;
     Renderer platformRenderer;
     public Collider platformCollider;
     AudioManager audioManager;
+    public Collider m_platformCollider { get { return platformCollider; } set { platformCollider = value; } }
+    private Collider platformCollider;
+    private PlayerPositon playerPositon;
+
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +21,12 @@ public class ActivateLantern : MonoBehaviour
         audioManager = AudioManager.instance;
         lanternCollider = GetComponent<BoxCollider>();
         platforms = GameObject.FindGameObjectsWithTag("Hidden Platform");
-        foreach(GameObject platform in platforms)
+        playerPositon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPositon>();
+
+        foreach (GameObject platform in platforms)
         {
-            platformRenderer = platform.transform.gameObject.GetComponent<Renderer>();
-            platformCollider = platform.transform.gameObject.GetComponent<Collider>();
+            platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
+            platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
             platformRenderer.enabled = false;
             platformCollider.enabled = false;
         }
@@ -51,30 +58,26 @@ public class ActivateLantern : MonoBehaviour
         {
             foreach (GameObject platform in platforms)
             {
-                platformRenderer = platform.transform.gameObject.GetComponent<Renderer>();
-                platformCollider = platform.transform.gameObject.GetComponent<Collider>();
+                platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
+                platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
                 platformRenderer.enabled = false;
                 platformCollider.enabled = false;
             }       
         }
-
     }
 
     //If lantern's collider collides with platform's collider, activate platform
     private void OnTriggerEnter(Collider other)
     {
-
        foreach (GameObject platform in platforms)
        {
-             if (other.tag == "Hidden Platform")
-             {
-                 platformRenderer = platform.transform.gameObject.GetComponent<Renderer>();
-                 platformCollider = platform.transform.gameObject.GetComponent<Collider>();
-                 platformRenderer.enabled = true;
-                 platformCollider.enabled = true;
-             }
-                    
+            if (other.tag == "Hidden Platform")
+            {
+                platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
+                platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
+                platformRenderer.enabled = true;
+                platformCollider.enabled = true;
+            }  
        }
-        
     }
 }

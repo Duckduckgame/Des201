@@ -9,7 +9,9 @@ public class CameraController : MonoBehaviour {
     [Tooltip("Sets the speed at which the camera follows the player")]
     public float CameraFollowSpeed = 100.0f;
     [Tooltip("Clamps the camera's vertical rotation between specfied angle")]
-    public float clampAngle = 30.0f;
+    public float clampAngleMin = 1.0f;
+    [Tooltip("Clamps the camera's vertical rotation between specfied angle")]
+    public float clampAngleMax = 80.0f;
     [Tooltip("Sets the sensitivity of the camera movement")]
     public float inputSensitivity = 150.0f;
     [Tooltip("Sets the rotation smoothing speed")]
@@ -48,7 +50,7 @@ public class CameraController : MonoBehaviour {
         rotationY += mouseX * inputSensitivity * Time.deltaTime;
         rotationX += mouseY * inputSensitivity * Time.deltaTime;
 
-        rotationX = Mathf.Clamp(rotationX, -clampAngle, clampAngle);
+        rotationX = Mathf.Clamp(rotationX, clampAngleMin, clampAngleMax);
 
 
         if(lerpRotation)
