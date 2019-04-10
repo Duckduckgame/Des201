@@ -42,8 +42,9 @@ Shader "Polygon Wind/Tree" {
 
 		SubShader{
 
-			Tags { "Queue" = "Transparent" "RenderType" = "Transparent" }
+			Tags { "Queue" = "Transparent" "RenderType" = "Transparent"}
 
+			Cull Off
 			CGPROGRAM
 			#pragma target 3.0
 			#pragma surface surf Lambert vertex:vert addshadow
@@ -64,6 +65,8 @@ Shader "Polygon Wind/Tree" {
 			sampler2D _MainTex;
 			float _clipAmount;
 			fixed4 _Tint;
+
+
 
 			//Structs
 			struct Input {
