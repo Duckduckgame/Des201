@@ -3,15 +3,17 @@
 Shader "Custom/mossTest"
 {
 Properties {
+	  _TintColor("Tint Color", Color) = (1.0,1.0,1.0,1.0)
       _MainTex ("Texture", 2D) = "white" {}
 	  _MossTex ("Moss texture", 2D) = "gray" {}
       _BumpMap ("Bumpmap", 2D) = "bump" {}
 	  _MossBump ("MossBumpmap", 2D) = "bump" {}
 	  _Direction ("Direction", Vector) = (0, 1, 0)
       _Amount ("Amount", Range(0, 1)) = 1
-	  _MossDepth("Moss Depth", Range(0,0.3)) = 0.1
+	  _MossDepth("Moss Depth", Range(0,1)) = 0.1
 	  _RoughnessMap ("Roughness Map", 2D) = "white" {}
 	  _Roughness ("Roughness", Range(0.01, 1)) = 0.01 
+	  _MossCancel("Moss Cancel", Range(-1,1)) = 0
 
     }
     SubShader {
@@ -31,6 +33,8 @@ Properties {
 	  float3 _Direction;
       fixed _Amount;
 	  float _MossDepth;
+	  float _MossCancel;
+	  float4 _TintColor;
 
       struct Input {
         float2 uv_MainTex;
@@ -46,11 +50,12 @@ Properties {
 
 	  void vert (inout appdata_full v){
 	  float3 snormal = normalize(_Direction.xyz);
+	  
 	  float3 sn = mul((float3x3)unity_WorldToObject, snormal).xyz;
 
-	   if(dot(v.normal, sn) >= lerp(1,-1, _Amount))
+	   if(dot(v.normal, sn.xyz) >= lerp(1,-1, ((_Amount*2)/3)))
             {
-               v.vertex.xyz += normalize(sn + v.normal) * _MossDepth * _Amount;
+               v.vertex.xyz += (sn + v.normal) * _MossDepth * _Amount;
             }
 	  }
 
@@ -61,7 +66,12 @@ Properties {
 		half3 n = tex2D (_BumpMap, IN.uv_BumpMap);
 		half3 nm = tex2D (_MossBump, IN.uv_MossBump);
 
-		if(dot(WorldNormalVector(IN, o.Normal), _Direction.xyz)>=lerp(1,-1,_Amount)){
+		float difference = dot(WorldNormalVector(IN, o.Normal), _Direction.xyz) - lerp(0, -1, _Amount);
+
+		cM *= _TintColor;
+			o.Albedo = difference * cM.rgb + (1 - difference) * c.rgb;
+
+		/*if(dot(WorldNormalVector(IN, o.Normal), _Direction.xyz)>=lerp(1,-1,_Amount)){
 			o.Albedo = cM.rgb;
 			o.Normal = nm.rgb;
 			
@@ -69,7 +79,7 @@ Properties {
 		else{
 			o.Albedo = c.rgb;
 			o.Normal = n.rgb;
-		}
+		}*/
 		o.Alpha = 1;
 		o.Gloss = roughness;
       }
