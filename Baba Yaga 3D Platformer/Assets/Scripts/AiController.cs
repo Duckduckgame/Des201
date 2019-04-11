@@ -56,8 +56,7 @@ public class AiController : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             audioManager.PlaySound("EnemySound");
-            gameObject.SetActive(true);
-            nav.SetDestination(player.position);
+            //gameObject.SetActive(true);
             if (enemy != null)
             {
                 float currentDistance = Vector3.Distance(transform.position, enemy.transform.position);
