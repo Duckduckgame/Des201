@@ -14,7 +14,7 @@ public class Checkpoint : MonoBehaviour
         playerPositon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPositon>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -23,11 +23,13 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             onCheckPoint = false;
         }
     }
+    
 }
+ 
