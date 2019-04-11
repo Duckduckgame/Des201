@@ -9,6 +9,7 @@ public class AiController : MonoBehaviour
     private PlayerPositon playerPositon;
     private GameObject lantern;
     private Transform enemyStartPos;
+    AudioManager audioManager;
     public float speed = 4.0f;
     private GameObject[] enemies;
     public float distanceBetweenEnemies = 2.0f;
@@ -24,6 +25,8 @@ public class AiController : MonoBehaviour
         playerPositon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPositon>();
         lantern = GameObject.FindGameObjectWithTag("Lantern");
         enemyStartPos = gameObject.transform;
+        gameObject.SetActive(false);
+        audioManager = AudioManager.instance;
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -52,6 +55,9 @@ public class AiController : MonoBehaviour
     {
         foreach (GameObject enemy in enemies)
         {
+            audioManager.PlaySound("EnemySound");
+            gameObject.SetActive(true);
+            nav.SetDestination(player.position);
             if (enemy != null)
             {
                 float currentDistance = Vector3.Distance(transform.position, enemy.transform.position);
