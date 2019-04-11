@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
+    AudioManager audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioManager = AudioManager.instance;
     }
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class PickUp : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            audioManager.PlaySound("lostSoulNoise");
             gameObject.SetActive(false);
         }
     }
