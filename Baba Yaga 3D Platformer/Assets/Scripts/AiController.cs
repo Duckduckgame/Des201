@@ -55,7 +55,7 @@ public class AiController : MonoBehaviour
     {
         foreach (GameObject enemy in enemies)
         {
-            audioManager.PlaySound("EnemySound");
+            //audioManager.PlaySound("EnemySound");
             //gameObject.SetActive(true);
             if (enemy != null)
             {
