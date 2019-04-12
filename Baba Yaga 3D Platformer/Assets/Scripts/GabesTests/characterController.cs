@@ -31,7 +31,16 @@ public class characterController : MonoBehaviour
 
     Vector3 crntDirection;
 
+
+    //Player sounds
+    AudioSource dashSound;
+    AudioSource JumpStart;
+    AudioSource JumpEnd;
+    AudioSource[] audios;
+
+
     private Animator anim;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +49,17 @@ public class characterController : MonoBehaviour
         camTransform = Camera.main.transform;
         coll = GetComponent<CapsuleCollider>();
         rb = GetComponent<Rigidbody>();
+
+        audios = new AudioSource[3];
+        dashSound = audios[0];
+        JumpEnd = audios[1];
+        JumpStart = audios[2];
+
         anim = GetComponent<Animator>();
 
        
        
+
     }
 
     // Update is called once per frame
@@ -100,9 +116,12 @@ public class characterController : MonoBehaviour
         #region Jumps
         if (Input.GetButtonDown("Jump")){
 
+            
+
             //double jump
             if (onGround == false && doubleJumpOK == true)
             {
+                //dashSound.Play();
                 Vector3 crntVelo = rb.velocity;
                 crntVelo.y = 0;
                 rb.velocity = Vector3.zero; //Important to zero out the velocity first. Addforce will otherwise be deducted from the downwards velocity
@@ -114,6 +133,7 @@ public class characterController : MonoBehaviour
             }
             //jump
             if (onGround == true) {
+                //JumpStart.Play();              
                 rb.AddForce(Vector3.up * jumpStrength, ForceMode.VelocityChange);
                 doubleJumpOK = true;
                 anim.SetBool("isJumping", true);
@@ -124,6 +144,7 @@ public class characterController : MonoBehaviour
         if (Input.GetButtonDown("Fire1")) {
             if (onGround == false && dashOK == true)
             {
+                //dashSound.Play();
                 rb.AddRelativeForce(new Vector3(0, 0.25f, 1) * dashStrength, ForceMode.VelocityChange);
                 dashOK = false;
                 anim.SetBool("isDoubleJumping", false);

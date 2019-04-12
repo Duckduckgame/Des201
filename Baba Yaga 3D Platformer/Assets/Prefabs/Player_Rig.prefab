@@ -2373,6 +2373,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b33894ccae8624f90285d1c442c386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PPGO: {fileID: 0}
+  dark: {fileID: 11400000, guid: 870e4d532ee6268438210d9f2a4fcd03, type: 2}
+  day: {fileID: 11400000, guid: 2c96051b5a2202b4b8283b7cf611ad74, type: 2}
 --- !u!1 &1243674557
 GameObject:
   m_ObjectHideFlags: 0
