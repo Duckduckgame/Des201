@@ -15,12 +15,13 @@
 	}
 
 		SubShader{
-		Tags{ "RenderType" = "Opaque" }
+		Tags { "Queue" = "Transparent" "RenderType" = "Transparent"}
 		LOD 200
-		Cull Off
+		//Cull Off
 		CGPROGRAM
 
-#pragma surface surf Lambert vertex:disp addshadow
+#pragma surface surf Lambert vertex:disp addshadow alpha:fade
+#pragma target 3.5
 
 	sampler2D _Noise;
 	float4 _Color, _CloudColor, _TColor, _RimColor;
@@ -31,6 +32,7 @@
 		float3 viewDir;
 		float4 noiseComb;
 		float4 col;
+		float2 uv_Noise;
 	};
 
 	struct appdata {
@@ -69,8 +71,12 @@
 
 	void surf(Input IN, inout SurfaceOutput o) {
 		half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal * (IN.noiseComb* _Strength))); // rimlight using normal and noise
+		float4 noiseTex = tex2D(_Noise, IN.uv_Noise);
 		o.Emission = _RimColor.rgb *pow(rim, _RimPower); // add glow rimlight to the clouds
 		o.Albedo = IN.col *_Color;// gradient * color tint
+		//clip(noiseTex.g - 0.1);
+		o.Alpha = noiseTex.a - 0.1;
+		
 	}
 	ENDCG
 

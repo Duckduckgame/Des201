@@ -20,19 +20,19 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Noise:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d4a49cd9ae13300419f5987f4e419bfd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AnimSpeedX: 1
-    - _AnimSpeedY: 1
-    - _AnimSpeedZ: 1
-    - _Height: 0.8
-    - _RimPower: 20
-    - _Scale: 0.004
-    - _Strength: 0.3
+    - _AnimSpeedX: 0.1
+    - _AnimSpeedY: 0.1
+    - _AnimSpeedZ: 0.1
+    - _Height: 0.01
+    - _RimPower: 24.9
+    - _Scale: 0.0019
+    - _Strength: 0.148
     m_Colors:
-    - _CloudColor: {r: 0.6, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 0.6, g: 1, b: 1, a: 1}
-    - _TColor: {r: 1, g: 0.6, b: 1, a: 1}
+    - _CloudColor: {r: 0.8490566, g: 0.7830169, b: 0.25231397, a: 1}
+    - _Color: {r: 1, g: 0.57039416, b: 0, a: 1}
+    - _RimColor: {r: 0.6603774, g: 0.60666794, b: 0.22116414, a: 1}
+    - _TColor: {r: 1, g: 0, b: 0.6076498, a: 1}
