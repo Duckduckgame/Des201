@@ -8,14 +8,16 @@ public class Checkpoint : MonoBehaviour
     public bool m_OnCheckpoint { get { return onCheckPoint; } set { onCheckPoint = value; } }
     private bool onCheckPoint;
 
-    public Light fireLight;
+    public GameObject fireLight;
+    public lightFlicker LF;
     public GameObject fire;
 
     // Start is called before the first frame update
     void Start()
     {
         playerPositon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPositon>();
-        fireLight.intensity = 0;
+        fireLight.GetComponent<Light>().intensity = 0;
+        LF = fireLight.GetComponent<lightFlicker>();
         fire.GetComponent<Renderer>().enabled = false;
     }
 
@@ -26,7 +28,8 @@ public class Checkpoint : MonoBehaviour
             onCheckPoint = true;
             playerPositon.m_reachedPosition = transform.position;
 
-            fireLight.intensity = 3.5f;
+            
+            LF.isOn = true;
             fire.GetComponent<Renderer>().enabled = true;
         }
     }
