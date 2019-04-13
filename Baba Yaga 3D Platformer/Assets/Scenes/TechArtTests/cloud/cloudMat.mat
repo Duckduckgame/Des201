@@ -13,26 +13,26 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _Noise:
-        m_Texture: {fileID: 2800000, guid: d4a49cd9ae13300419f5987f4e419bfd, type: 3}
+        m_Texture: {fileID: 2800000, guid: a2efbd5ce3ee2684c88f69c28a06dff8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AnimSpeedX: 0.1
-    - _AnimSpeedY: 0.1
-    - _AnimSpeedZ: 0.1
-    - _Height: 0.01
-    - _RimPower: 24.9
+    - _AnimSpeedX: 0.05
+    - _AnimSpeedY: 0.05
+    - _AnimSpeedZ: 0.05
+    - _Height: 0.002
+    - _RimPower: 27.4
     - _Scale: 0.0019
-    - _Strength: 0.148
+    - _Strength: 0.437
     m_Colors:
-    - _CloudColor: {r: 0.8490566, g: 0.7830169, b: 0.25231397, a: 1}
-    - _Color: {r: 1, g: 0.57039416, b: 0, a: 1}
-    - _RimColor: {r: 0.6603774, g: 0.60666794, b: 0.22116414, a: 1}
-    - _TColor: {r: 1, g: 0, b: 0.6076498, a: 1}
+    - _CloudColor: {r: 0.8490566, g: 0.7830169, b: 0.25231394, a: 1}
+    - _Color: {r: 1, g: 0.5703941, b: 0, a: 1}
+    - _RimColor: {r: 0.6603774, g: 0.60666794, b: 0.2211641, a: 1}
+    - _TColor: {r: 1, g: 0, b: 0.6076497, a: 1}
