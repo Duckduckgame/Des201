@@ -15,7 +15,7 @@ public class PickUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        this.transform.position += new Vector3(0, Mathf.Sin(Time.time) / 200, 0);
     }
 
     private void OnTriggerEnter(Collider other)
