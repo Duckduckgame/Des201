@@ -20,7 +20,7 @@ Properties {
       Tags { "RenderType" = "Opaque" }
       
 	  CGPROGRAM
-	  #pragma surface surf Lambert vertex:vert
+	  #pragma surface surf Lambert addshadow 
 	  #pragma target 3.0
 	  #pragma glsl
 
@@ -47,7 +47,7 @@ Properties {
 		float3 worldRefl;
 		INTERNAL_DATA
       };
-
+	  /*
 	  void vert (inout appdata_full v){
 	  float3 snormal = normalize(_Direction.xyz);
 	  
@@ -57,7 +57,7 @@ Properties {
             {
                v.vertex.xyz += (sn + v.normal) * _MossDepth * _Amount;
             }
-	  }
+	  }*/
 
       void surf (Input IN, inout SurfaceOutput o) {
 		float roughness = _Roughness * tex2D(_RoughnessMap, IN.uv_Roughness).r;

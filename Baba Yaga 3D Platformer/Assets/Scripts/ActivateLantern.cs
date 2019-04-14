@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class ActivateLantern : MonoBehaviour
 {
@@ -8,11 +9,20 @@ public class ActivateLantern : MonoBehaviour
     Collider lanternCollider;
     GameObject[] platforms;
     Renderer platformRenderer;
-    public Collider platformCollider;
+    Material platformMaterial;
     AudioManager audioManager;
     public Collider m_platformCollider { get { return platformCollider; } set { platformCollider = value; } }
     private Collider platformCollider;
     private PlayerPositon playerPositon;
+
+    public GameObject PPGO;
+
+    public PostProcessProfile dark;
+    public PostProcessProfile day;
+
+    PostProcessVolume PPV;
+
+    bool isday = true;
 
 
     // Start is called before the first frame update
@@ -26,11 +36,15 @@ public class ActivateLantern : MonoBehaviour
         foreach (GameObject platform in platforms)
         {
             platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
+            platformRenderer.material.SetFloat("Alpha Level", 0.3f);
+            Debug.Log(platformRenderer.material.GetFloat("Alpha Level"));
             platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
-            platformRenderer.enabled = false;
+            //platformRenderer.enabled = false;
             platformCollider.enabled = false;
         }
-    
+
+        PPV = PPGO.GetComponent<PostProcessVolume>();
+
     }
 
     // Update is called once per frame
@@ -38,17 +52,19 @@ public class ActivateLantern : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Fire3"))
         {
-            
             //Toggle the lantern on and off when pressing the L key
             lanternCollider.enabled = !lanternCollider.enabled;
 
             if (lanternCollider.enabled)
             {
-                audioManager.PlaySound("TorchSound");
+                //audioManager.PlaySound("TorchSound");
+                PPV.profile = dark;
                 transform.GetChild(0).gameObject.GetComponent<Light>().enabled = true;
+                transform.GetChild(0).gameObject.GetComponent<Light>().intensity = 6;
             }
             else if (!lanternCollider.enabled)
             {
+                PPV.profile = day;
                 transform.GetChild(0).gameObject.GetComponent<Light>().enabled = false;
             }
         }
@@ -59,8 +75,9 @@ public class ActivateLantern : MonoBehaviour
             foreach (GameObject platform in platforms)
             {
                 platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
+                platformRenderer.material.SetFloat("Alpha Level", 0.3f);
                 platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
-                platformRenderer.enabled = false;
+                //platformRenderer.enabled = false;                
                 platformCollider.enabled = false;
             }       
         }
@@ -74,8 +91,9 @@ public class ActivateLantern : MonoBehaviour
             if (other.tag == "Hidden Platform")
             {
                 platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
+                platformRenderer.material.SetFloat("Alpha Level", 1f);
                 platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
-                platformRenderer.enabled = true;
+                //platformRenderer.enabled = true;
                 platformCollider.enabled = true;
             }  
        }

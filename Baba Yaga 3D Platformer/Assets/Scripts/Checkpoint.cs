@@ -8,10 +8,17 @@ public class Checkpoint : MonoBehaviour
     public bool m_OnCheckpoint { get { return onCheckPoint; } set { onCheckPoint = value; } }
     private bool onCheckPoint;
 
+    public GameObject fireLight;
+    public lightFlicker LF;
+    public GameObject fire;
+
     // Start is called before the first frame update
     void Start()
     {
         playerPositon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPositon>();
+        fireLight.GetComponent<Light>().intensity = 0;
+        LF = fireLight.GetComponent<lightFlicker>();
+        fire.GetComponent<Renderer>().enabled = false;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -20,6 +27,10 @@ public class Checkpoint : MonoBehaviour
         {
             onCheckPoint = true;
             playerPositon.m_reachedPosition = transform.position;
+
+            
+            LF.isOn = true;
+            fire.GetComponent<Renderer>().enabled = true;
         }
     }
 
