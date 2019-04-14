@@ -14,6 +14,7 @@
     SubShader
     {
 		Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
+		Tags { "ForceNoShadowCasting" = "True"}
         LOD 200
 		ZWrite Off
 
@@ -66,7 +67,7 @@
 			fixed4 mask = tex2D(_MaskTex, IN.uv_MaskTex);
 
 			fixed alpha = gMap.r - mask.b - 0.2;
-			o.Alpha = alpha;
+			o.Alpha = gMap.r -0.3;
 			
 			clip(map.a - 0.1);
         }

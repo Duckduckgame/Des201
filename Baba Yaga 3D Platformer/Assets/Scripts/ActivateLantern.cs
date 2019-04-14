@@ -9,6 +9,7 @@ public class ActivateLantern : MonoBehaviour
     Collider lanternCollider;
     GameObject[] platforms;
     Renderer platformRenderer;
+    Material platformMaterial;
     AudioManager audioManager;
     public Collider m_platformCollider { get { return platformCollider; } set { platformCollider = value; } }
     private Collider platformCollider;
@@ -35,8 +36,10 @@ public class ActivateLantern : MonoBehaviour
         foreach (GameObject platform in platforms)
         {
             platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
+            platformRenderer.material.SetFloat("Alpha Level", 0.3f);
+            Debug.Log(platformRenderer.material.GetFloat("Alpha Level"));
             platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
-            platformRenderer.enabled = false;
+            //platformRenderer.enabled = false;
             platformCollider.enabled = false;
         }
 
@@ -72,8 +75,9 @@ public class ActivateLantern : MonoBehaviour
             foreach (GameObject platform in platforms)
             {
                 platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
+                platformRenderer.material.SetFloat("Alpha Level", 0.3f);
                 platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
-                platformRenderer.enabled = false;
+                //platformRenderer.enabled = false;                
                 platformCollider.enabled = false;
             }       
         }
@@ -87,8 +91,9 @@ public class ActivateLantern : MonoBehaviour
             if (other.tag == "Hidden Platform")
             {
                 platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
+                platformRenderer.material.SetFloat("Alpha Level", 1f);
                 platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
-                platformRenderer.enabled = true;
+                //platformRenderer.enabled = true;
                 platformCollider.enabled = true;
             }  
        }
