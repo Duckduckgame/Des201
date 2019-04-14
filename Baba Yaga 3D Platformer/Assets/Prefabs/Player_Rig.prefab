@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 209660155}
   - component: {fileID: 209660157}
   - component: {fileID: 209660156}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Boots
   m_TagString: PlayerFloorCollision
   m_Icon: {fileID: 0}
@@ -1208,7 +1208,7 @@ GameObject:
   - component: {fileID: 562763031}
   - component: {fileID: 562763032}
   - component: {fileID: 1123014340}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Player_Rig
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2271,7 +2271,7 @@ GameObject:
   - component: {fileID: 1204965838}
   - component: {fileID: 1027207998}
   - component: {fileID: 1027207996}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Lantern
   m_TagString: Lantern
   m_Icon: {fileID: 0}
