@@ -37,7 +37,7 @@ public class ActivateLantern : MonoBehaviour
         {
             platformRenderer = platform.transform.GetChild(0).GetComponent<Renderer>();
             platformRenderer.material.SetFloat("Alpha Level", 0.3f);
-            Debug.Log(platformRenderer.material.GetFloat("Alpha Level"));
+
             platformCollider = platform.transform.GetChild(0).GetComponent<Collider>();
             //platformRenderer.enabled = false;
             platformCollider.enabled = false;
