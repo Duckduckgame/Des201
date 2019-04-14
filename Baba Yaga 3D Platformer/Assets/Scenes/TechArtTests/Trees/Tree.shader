@@ -44,10 +44,10 @@ Shader "Polygon Wind/Tree" {
 
 			Tags { "Queue" = "Transparent" "RenderType" = "Transparent"}
 
-			Cull Off
+			//Cull Off
 			CGPROGRAM
 			#pragma target 3.0
-			#pragma surface surf Lambert vertex:vert addshadow
+			#pragma surface surf Lambert vertex:vert //addshadow
 
 			//Declared Variables
 			float4 _wind_dir;
