@@ -20,11 +20,18 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: ad9501de26729c5488f7827d1fbe5026, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 2800000, guid: d9ecbb39859462c4c85472b47af1d60e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _AlphaLevel: 0.01
     - _Glossiness: 0.5
     - _Metallic: 0
+    - _ScrollXSpeed: 0.4
+    - _ScrollYSpeed: 0.4
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.0013349979, g: 0.26937628, b: 0.2830189, a: 0.08235294}
