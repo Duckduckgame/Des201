@@ -34,6 +34,7 @@ public class pauseScreenUI : MonoBehaviour
                 Pause();
             else if (isPaused)
             {
+
                 Resume();
             }
 
@@ -42,12 +43,18 @@ public class pauseScreenUI : MonoBehaviour
 
     void Pause() {
 
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
 
     void Resume() {
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
