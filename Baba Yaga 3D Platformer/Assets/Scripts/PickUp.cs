@@ -22,7 +22,7 @@ public class PickUp : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            //audioManager.PlaySound("lostSoulNoise");
+            audioManager.PlaySound("lostSoulNoise");
             gameObject.SetActive(false);
         }
     }

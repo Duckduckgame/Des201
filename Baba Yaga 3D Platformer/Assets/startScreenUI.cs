@@ -29,14 +29,14 @@ public class startScreenUI : MonoBehaviour
     }
 
     void startClick() {
-        Debug.Log("starts been clicked");
+
         SceneManager.LoadScene("lvlDesTests", LoadSceneMode.Single);
     }
     void optionsClick() {
-        Debug.Log("options been clicked");
+
     }
     void quitClick() {
-        Debug.Log("quit been clicked");
+
         Application.Quit();
     }
     

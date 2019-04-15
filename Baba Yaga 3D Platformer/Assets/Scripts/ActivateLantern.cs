@@ -57,7 +57,7 @@ public class ActivateLantern : MonoBehaviour
 
             if (lanternCollider.enabled)
             {
-                //audioManager.PlaySound("TorchSound");
+                audioManager.PlaySound("TorchSound");
                 PPV.profile = dark;
                 transform.GetChild(0).gameObject.GetComponent<Light>().enabled = true;
                 transform.GetChild(0).gameObject.GetComponent<Light>().intensity = 6;
