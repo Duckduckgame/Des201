@@ -6,11 +6,13 @@ public class voicelinesTrigger : MonoBehaviour
 {
     public int thisClip;
     voicelinesAudio voicelinesAudio;
+    characterController cC;
 
     // Start is called before the first frame update
     void Start()
     {
         voicelinesAudio = GameObject.Find("VLManager").GetComponent<voicelinesAudio>();
+        cC = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<characterController>();
     }
 
     // Update is called once per frame
@@ -21,7 +23,11 @@ public class voicelinesTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        voicelinesAudio.playClip(thisClip);
-        this.gameObject.SetActive(false);
+        if (other.tag == "Player")
+        {
+            cC.scrollCount++;
+            voicelinesAudio.playClip(thisClip);
+            this.gameObject.SetActive(false);
+        }
     }
 }

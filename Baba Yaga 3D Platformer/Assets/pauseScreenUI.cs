@@ -10,10 +10,15 @@ public class pauseScreenUI : MonoBehaviour
     public Button options;
     public Button extras;
     public Button quit;
-
+    public GameObject lostSoulsCount;
+    public GameObject scrollsCount;
     public GameObject pauseMenu;
 
-    public bool isPaused = false;
+    public CanvasGroup cG;
+
+    public bool isPaused = true;
+
+    characterController cC;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +28,21 @@ public class pauseScreenUI : MonoBehaviour
         extras.onClick.AddListener(extrasClick);
         quit.onClick.AddListener(quitClick);
 
-        RectTransform me = this.gameObject.GetComponent<RectTransform>();
-       
+        cC = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<characterController>();
+        cG = gameObject.GetComponent<CanvasGroup>();
+        
+        
+
     }
     // Update is called once per frame
     void Update()
     {
+        if (isPaused) {
+
+            lostSoulsCount.GetComponent<Text>().text = cC.lostSoulsCount.ToString();
+            scrollsCount.GetComponent<Text>().text = cC.scrollCount.ToString();
+        }
+        
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (!isPaused)
                 Pause();
@@ -46,8 +60,13 @@ public class pauseScreenUI : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
 
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
+
+        cG.alpha = 1;
+        cG.interactable = true;
+
+        lostSoulsCount.GetComponent<Text>().text = cC.lostSoulsCount.ToString();
+        scrollsCount.GetComponent<Text>().text = cC.scrollCount.ToString();
+        Time.timeScale = 0.01f;
         isPaused = true;
     }
 
@@ -55,8 +74,8 @@ public class pauseScreenUI : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        pauseMenu.SetActive(false);
+        cG.alpha = 0;
+        cG.interactable = false;
         Time.timeScale = 1f;
         isPaused = false;
     }

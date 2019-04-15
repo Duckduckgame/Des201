@@ -5,6 +5,8 @@ using UnityEngine.Animations;
 
 public class characterController : MonoBehaviour
 {
+    public int lostSoulsCount = 0;
+    public int scrollCount = 0;
     public bool onGround = false;
     public bool doubleJumpOK = false;
     bool dashOK = true;
@@ -108,9 +110,9 @@ public class characterController : MonoBehaviour
 
         }
 
-        
-        #endregion
 
+        #endregion
+       
        
 
         #region Jumps
