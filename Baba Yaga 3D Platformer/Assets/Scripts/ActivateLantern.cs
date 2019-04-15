@@ -20,7 +20,7 @@ public class ActivateLantern : MonoBehaviour
     public PostProcessProfile dark;
     public PostProcessProfile day;
 
-    PostProcessVolume PPV;
+    public PostProcessVolume PPV;
 
     bool isday = true;
 
@@ -50,7 +50,7 @@ public class ActivateLantern : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Fire2"))
         {
             //Toggle the lantern on and off when pressing the L key
             lanternCollider.enabled = !lanternCollider.enabled;

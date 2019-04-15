@@ -18,6 +18,9 @@ public class AiController : MonoBehaviour
     public Vector3 m_originalPos { get { return originalPos; } set { originalPos = value; } }
     private Vector3 originalPos;
 
+    public GameObject[] enemyGO;
+    Renderer[] renderers;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +28,9 @@ public class AiController : MonoBehaviour
         playerPositon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPositon>();
         lantern = GameObject.FindGameObjectWithTag("Lantern");
         enemyStartPos = gameObject.transform;
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         audioManager = AudioManager.instance;
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+
         gameObject.GetComponent<Collider>().enabled = false;
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         checkpoint = GameObject.FindGameObjectWithTag("Checkpoint").GetComponent<Checkpoint>();
@@ -47,6 +50,7 @@ public class AiController : MonoBehaviour
             {
                 lantern.GetComponent<ActivateLantern>().m_lanternCollider.enabled = false;
                 lantern.transform.GetChild(0).gameObject.GetComponent<Light>().enabled = false;
+                lantern.GetComponent<ActivateLantern>().PPV.profile = lantern.GetComponent<ActivateLantern>().day;
             }
         }
     }
@@ -81,20 +85,20 @@ public class AiController : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
                 {
-                    gameObject.GetComponent<MeshRenderer>().enabled = true;
+                    changeRendering(true);
                     gameObject.GetComponent<Collider>().enabled = true;
                     transform.LookAt(player);
                     transform.position += transform.forward * speed * Time.deltaTime;
                 }
                 else
                 {
-                    gameObject.GetComponent<MeshRenderer>().enabled = false;
+                    changeRendering(false);
                     gameObject.GetComponent<Collider>().enabled = false;
                 }
             }
             else if(!lantern.GetComponent<ActivateLantern>().m_lanternCollider.enabled)
             {
-                gameObject.GetComponent<MeshRenderer>().enabled = false;
+                changeRendering(false);
                 gameObject.GetComponent<Collider>().enabled = false;
             }
             else if (lantern.GetComponent<ActivateLantern>().m_lanternCollider.enabled && checkpoint.m_OnCheckpoint == true ||
@@ -102,7 +106,7 @@ public class AiController : MonoBehaviour
             {
                 if (Vector3.Distance(transform.position, player.position) <= chaseDistance)
                 {
-                    gameObject.GetComponent<MeshRenderer>().enabled = true;
+                    changeRendering(true);
                     gameObject.GetComponent<Collider>().enabled = true;
                 }   
             }
@@ -114,11 +118,17 @@ public class AiController : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerPositon.m_playerDead = true;
-
             player.transform.position = new Vector3(playerPositon.m_reachedPosition.x, playerPositon.m_reachedPosition.y + 1,
                 playerPositon.m_reachedPosition.z);
 
             transform.position = originalPos;
         }
     }
+
+    void changeRendering(bool b) {
+        for (int i = 0; i < enemyGO.Length; i++) {
+            //renderers[i].enabled = b;
+            enemyGO[i].SetActive(b);
+        }
+    } 
 }
