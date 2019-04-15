@@ -22,5 +22,6 @@ public class voicelinesTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         voicelinesAudio.playClip(thisClip);
+        this.gameObject.SetActive(false);
     }
 }
