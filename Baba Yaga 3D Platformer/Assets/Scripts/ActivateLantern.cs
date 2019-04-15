@@ -50,7 +50,7 @@ public class ActivateLantern : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Fire3"))
+        if (Input.GetKeyDown(KeyCode.L) || Input.GetButtonDown("Fire1"))
         {
             //Toggle the lantern on and off when pressing the L key
             lanternCollider.enabled = !lanternCollider.enabled;
