@@ -26,6 +26,7 @@ public class PickUp : MonoBehaviour
     {
         if(other.tag == "Player")
         {
+            
             cC.lostSoulsCount++;
             audioManager.PlaySound("lostSoulNoise");
             gameObject.SetActive(false);

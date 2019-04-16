@@ -39,8 +39,8 @@ public class pauseScreenUI : MonoBehaviour
     {
         if (isPaused) {
 
-            lostSoulsCount.GetComponent<Text>().text = cC.lostSoulsCount.ToString();
-            scrollsCount.GetComponent<Text>().text = cC.scrollCount.ToString();
+            lostSoulsCount.GetComponent<Text>().text = cC.lostSoulsCount.ToString() + "/78";
+            scrollsCount.GetComponent<Text>().text = cC.scrollCount.ToString() + "/15";
         }
         
         if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -64,8 +64,8 @@ public class pauseScreenUI : MonoBehaviour
         cG.alpha = 1;
         cG.interactable = true;
 
-        lostSoulsCount.GetComponent<Text>().text = cC.lostSoulsCount.ToString();
-        scrollsCount.GetComponent<Text>().text = cC.scrollCount.ToString();
+        lostSoulsCount.GetComponent<Text>().text = cC.lostSoulsCount.ToString() + "/78";
+        scrollsCount.GetComponent<Text>().text = cC.scrollCount.ToString() + "/15";
         Time.timeScale = 0.01f;
         isPaused = true;
     }
