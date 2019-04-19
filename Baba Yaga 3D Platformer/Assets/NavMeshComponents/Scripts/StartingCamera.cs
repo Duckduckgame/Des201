@@ -29,6 +29,13 @@ public class StartingCamera : MonoBehaviour
             CineCam.SetActive(false);
         }
     }
+    private void Update()
+    {
+        if (Input.anyKeyDown)
+        {
+            CineCam.SetActive(false);
+        }
+    }
     private void LateUpdate()
     {
         MoveCineCamera();
