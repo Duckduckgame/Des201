@@ -1,21 +1,15 @@
 fileFormatVersion: 2
-guid: 52a637140499e4e4591409169b00f618
+guid: bb58c26359c9ad54caa19217fe3ec5c8
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: BASE
-    2100002: BASE.007
+    2100000: BASE.001
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Rock.006
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: BASE
-    second: {fileID: 2100000, guid: 5ea43d19c1609364e8122d249edc01f2, type: 2}
+    4300000: Rock.009
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0

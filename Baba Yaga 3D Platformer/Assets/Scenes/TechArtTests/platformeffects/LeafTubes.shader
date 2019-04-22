@@ -70,6 +70,7 @@
 			o.Alpha = gMap.r -0.3;
 			
 			clip(map.a - 0.1);
+			clip(gMap.r - 0.1);
         }
         ENDCG
     }
