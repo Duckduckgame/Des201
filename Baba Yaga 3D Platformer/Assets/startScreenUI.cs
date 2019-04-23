@@ -11,26 +11,34 @@ public class startScreenUI : MonoBehaviour
     public Button quit;
     public Text music;
     public Button musicBtn;
+    UIFade uifade;
+    public GameObject uifadeGO;
     // Start is called before the first frame update
     void Start()
     {
         start.onClick.AddListener(startClick);
         options.onClick.AddListener(optionsClick);
         quit.onClick.AddListener(quitClick);
+
+        uifade = uifadeGO.GetComponent<UIFade>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-       
 
-        
+        if (uifadeGO.GetComponent<CanvasGroup>().alpha == 1)
+        {
+            SceneManager.LoadScene("lvlDesTests", LoadSceneMode.Single);
+        }
+
+
     }
 
     void startClick() {
-
-        SceneManager.LoadScene("lvlDesTests", LoadSceneMode.Single);
+        //uifade.fadeToBlack();
+        uifade.fadeTo = true;
+       
     }
     void optionsClick() {
 
