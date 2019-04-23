@@ -7,8 +7,7 @@ public class pauseScreenUI : MonoBehaviour
 {
 
     public Button continuu;
-    public Button options;
-    public Button extras;
+    public Text endT;
     public Button quit;
     public GameObject lostSoulsCount;
     public GameObject scrollsCount;
@@ -17,15 +16,15 @@ public class pauseScreenUI : MonoBehaviour
     public CanvasGroup cG;
 
     public bool isPaused = true;
-
+    public bool isEnd = false;
     characterController cC;
 
     // Start is called before the first frame update
     void Start()
     {
         continuu.onClick.AddListener(continuuClick);
-        options.onClick.AddListener(optionsClick);
-        extras.onClick.AddListener(extrasClick);
+
+      
         quit.onClick.AddListener(quitClick);
 
         cC = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<characterController>();
@@ -37,6 +36,12 @@ public class pauseScreenUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isEnd) {
+            continuu.gameObject.SetActive(false);
+            endT.gameObject.SetActive(true);
+            Pause();
+           
+        }
         if (isPaused) {
 
             lostSoulsCount.GetComponent<Text>().text = cC.lostSoulsCount.ToString() + "/78";
@@ -48,7 +53,7 @@ public class pauseScreenUI : MonoBehaviour
                 Pause();
             else if (isPaused)
             {
-
+                if(!isEnd)
                 Resume();
             }
 
@@ -57,7 +62,7 @@ public class pauseScreenUI : MonoBehaviour
 
     void Pause() {
 
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
 
@@ -83,8 +88,7 @@ public class pauseScreenUI : MonoBehaviour
     void continuuClick() {
         Resume();
     }
-    void optionsClick() { }
-    void extrasClick() { }
+
     void quitClick()
     {
         Application.Quit();
