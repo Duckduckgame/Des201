@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class startScreenUI : MonoBehaviour
 {
     public Button start;
-    public Button options;
+
     public Button quit;
     public Text music;
     public Button musicBtn;
@@ -17,7 +17,7 @@ public class startScreenUI : MonoBehaviour
     void Start()
     {
         start.onClick.AddListener(startClick);
-        options.onClick.AddListener(optionsClick);
+
         quit.onClick.AddListener(quitClick);
 
         uifade = uifadeGO.GetComponent<UIFade>();
@@ -40,9 +40,7 @@ public class startScreenUI : MonoBehaviour
         uifade.fadeTo = true;
        
     }
-    void optionsClick() {
 
-    }
     void quitClick() {
 
         Application.Quit();
