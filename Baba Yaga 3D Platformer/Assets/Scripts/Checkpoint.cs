@@ -12,11 +12,13 @@ public class Checkpoint : MonoBehaviour
     public lightFlicker LF;
     public GameObject fire;
     AudioManager audioManager;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         audioManager = AudioManager.instance;
+        audioSource = GetComponent<AudioSource>();
         playerPositon = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerPositon>();
         fireLight.GetComponent<Light>().intensity = 0;
         LF = fireLight.GetComponent<lightFlicker>();
@@ -30,6 +32,7 @@ public class Checkpoint : MonoBehaviour
             onCheckPoint = true;
             playerPositon.m_reachedPosition = transform.position;
             //audioManager.PlaySound("Checkpoint");
+            audioSource.Play();
 
             LF.isOn = true;
             fire.GetComponent<Renderer>().enabled = true;
