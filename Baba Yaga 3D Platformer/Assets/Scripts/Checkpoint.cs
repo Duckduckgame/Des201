@@ -13,6 +13,7 @@ public class Checkpoint : MonoBehaviour
     public GameObject fire;
     AudioManager audioManager;
     AudioSource audioSource;
+    public bool startCheckpoint;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,7 @@ public class Checkpoint : MonoBehaviour
             onCheckPoint = true;
             playerPositon.m_reachedPosition = transform.position;
             //audioManager.PlaySound("Checkpoint");
+            if(!startCheckpoint)
             audioSource.Play();
 
             LF.isOn = true;
